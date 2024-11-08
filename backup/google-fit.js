@@ -59,8 +59,6 @@ function getSteps() {
         })
         .catch(error => {
             console.error('Error fetching step count:', error);
-            document.getElementById('stepsValue').textContent = 'Error';
-            alert('Failed to fetch steps data: ' + error.message);
         });
 }
 
