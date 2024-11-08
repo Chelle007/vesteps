@@ -1,7 +1,7 @@
 function drawKey(x, y, state) {
     if (!state) {
         push();
-        translate(-40, -60);
+        translate(-40, -0);
         stroke(165, 42, 42);
         strokeWeight(4);
         fill(250, 255, 0);

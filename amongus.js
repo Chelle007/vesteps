@@ -6,7 +6,7 @@ function amongus(gameChar_x, gameChar_y, color) {
     scale(3);
     strokeWeight(1.5);
     stroke(0);
-    translate(x, y + 20);
+    translate(x, y + 10);
     fill(color);
 
     // left leg
