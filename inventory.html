@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VeSteps - Inventory</title>
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            height: 100vh;
+            background-color: #0A1920;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <h1>Inventory</h1>
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-container').innerHTML = data);
+    </script>
+</body>
+
+</html>
