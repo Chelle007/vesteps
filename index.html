@@ -91,13 +91,13 @@
                 }
             });
 
-            tokenClient.requestAccessToken();
+            await tokenClient.requestAccessToken();
         }
 
         async function initGame() {
-            await setSteps();
             localStorage.setItem("level", 1);
-            localStorage.setItem("characters", JSON.stringify(['default']));
+            localStorage.setItem("characters", JSON.stringify(['vechild']));
+            await setSteps();
             initGameFinished = true;
         }
 
@@ -117,7 +117,7 @@
             const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
 
             // Set up the API request to Google Fit
-            fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
+            const response = await fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + accessToken,
@@ -132,38 +132,34 @@
                     "startTimeMillis": startOfToday, // Start of today at 00:00:00
                     "endTimeMillis": now.getTime() // Current time
                 })
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(err => {
-                            throw new Error(JSON.stringify(err));
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Raw response:', data);
+            });
 
-                    let totalSteps = 0;
-                    if (data.bucket && data.bucket.length > 0) {
-                        data.bucket.forEach(bucket => {
-                            if (bucket.dataset && bucket.dataset[0].point) {
-                                bucket.dataset[0].point.forEach(point => {
-                                    if (point.value && point.value[0]) {
-                                        totalSteps += point.value[0].intVal || 0;
-                                    }
-                                });
+            if (!response.ok) {
+                localStorage.setItem('steps', 1200);
+                const err = await response.json();
+                throw new Error(JSON.stringify(err));
+            }
+
+            const data = await response.json();
+            console.log('Raw response:', data);
+
+            let totalSteps = 0;
+            if (data.bucket && data.bucket.length > 0) {
+                data.bucket.forEach(bucket => {
+                    if (bucket.dataset && bucket.dataset[0].point) {
+                        bucket.dataset[0].point.forEach(point => {
+                            if (point.value && point.value[0]) {
+                                totalSteps += point.value[0].intVal || 0;
                             }
                         });
                     }
-
-                    localStorage.setItem('steps', totalSteps);
-                    console.log('Steps:', totalSteps);
-                })
-                .catch(error => {
-                    localStorage.setItem('steps', 1000);
                 });
+            }
+
+            localStorage.setItem('steps', totalSteps);
+            console.log('Steps:', totalSteps);
         }
+
     </script>
 </body>
 

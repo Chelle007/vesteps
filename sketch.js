@@ -1,4 +1,4 @@
-function preload(){
+function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
@@ -7,7 +7,8 @@ function preload(){
 var gameChar;
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.position(0, 160);
 
     let gameChar_x = width / 2;
     let gameChar_y = (height / 10) * 7;
@@ -17,7 +18,7 @@ function setup() {
         y: height / 10 * 7,
         color: "#CC0000"
     }
-    
+
     // To determine which level is the user in
     inLevel = 1;
 
@@ -40,7 +41,7 @@ function setup() {
 }
 
 function draw() {
-    background(200,200,200);
+    background(200, 200, 200);
     //draw guiding lines
     for (let i = 0; i < 7; i++) {
         stroke(255, 0, 0);

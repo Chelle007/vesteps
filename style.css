@@ -1,8 +1,8 @@
 .left-bottom-img {
-    display: sticky;
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 1000;
 }
 
 .left-bottom-img img {
