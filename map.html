@@ -30,6 +30,20 @@
         document.getElementById('levelValue').textContent = localStorage.getItem('level');
         document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
       });
+
+    // Get the nav height after it is loaded
+    window.onload = () => {
+      setTimeout(() => {
+        const navElement = document.querySelector('nav');
+        if (navElement) {
+            navHeight = navElement.offsetHeight;
+            console.log("The height of the <nav> element is:", navHeight, "pixels");
+        } else {
+            console.log("<nav> element not found");
+        }
+      }, 500); // 500ms delay
+    };
+
   </script>
 </body>
 
