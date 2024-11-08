@@ -1,14 +1,19 @@
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(200, 200, 200);
     gameChar = {
         x: width / 2,
-        y: height / 5 * 4,
-        color: 255
+        y: height / 10 * 7,
+        color: "#CC0000"
     }
+
+    angleMode(DEGREES);
+    // TODO: change this later according to
+
+    keyIsFound = false;
 }
 
 function draw() {
+    background(200, 200, 200);
     //draw guiding lines
     for (let i = 0; i < 7; i++) {
         stroke(255, 0, 0, 100);
@@ -34,7 +39,12 @@ function draw() {
     node5.draw();
     node6.draw();
 
-    amongus(gameChar.x, gameChar.y);
+    // Draw among us
+    amongus(gameChar.x, gameChar.y, gameChar.color);
+
+    // Draw collectable (key)
+    drawKey(width / 2, height / 2, keyIsFound);
+
 }
 
 function windowResized() {
