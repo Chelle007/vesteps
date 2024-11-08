@@ -2,15 +2,16 @@ function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
+    arrowImg = loadImage("assets/arrow.png");
 }
 
 function setup() {
-    // let canvas = createCanvas(windowWidth, windowHeight);
-    // canvas.position(0, 160);
+    let canvas = createCanvas(windowWidth, windowHeight - navHeight);
+    canvas.position(0, 160);
 
     // let gameChar_x = width / 2;
     // let gameChar_y = (height / 10) * 7;
-    createCanvas(windowWidth, windowHeight - navHeight);
+    // createCanvas(windowWidth, windowHeight - navHeight);
     textFont('Roboto Mono');
 
     gameChar = {
@@ -21,6 +22,7 @@ function setup() {
 
     // To determine which level is the user in
     inLevel = 1;
+    tutorialStep = 1;
 
     angleMode(DEGREES);
 
@@ -135,37 +137,68 @@ function draw() {
     drawTreasure(treasure.x, treasure.y, treasure.isFound);
 
     // Tutorial text
-    // Step 1: Darken the whole canvas
-    fill(0, 0, 0, 90); // Semi-transparent black for darkening
-    rect(0, 0, width, height);
+    if (tutorialStep <= 5) {
+        // Step 1: Darken the whole canvas
+        fill(0, 0, 0, 90); // Semi-transparent black for darkening
+        rect(0, 0, width, height);
 
-    // Step 2: Lighten a specific area
-    blendMode(REMOVE);
-    fill(255);
+        // Step 2: Lighten a specific area
+        blendMode(REMOVE);
+        rectMode(CENTER);
+        textAlign(CENTER, CENTER);
 
-    // 1. Gain stamina by walking IRL!
-    // 2. With enough stamina, you can move
-    // 3. Find the key and unlock treasure
-    // 4. Go next level via portal
-
-    // let tutorialStep = 1;
-
-    // if (tutorialStep == 1) {
-    rectMode(CENTER);
-    textAlign(CENTER, CENTER);
-    rect(width / 2, height / 10 * 1, 900, 100); // Position and size of the lightened area
-
-    // Reset blend mode to normal
-    blendMode(BLEND);
-    fill(240, 0, 0);
-    textSize(46);
-    text('1. Gain stamina by walking IRL!', width / 2, height / 10 * 1);
-    // text('2. With enough stamina, you can move', 150, 175);
-    // text('3. Find the key and unlock treasure', 150, 200);
-    // text('4. Go next level via portal', 150, 225);
-
-    // Change back to default CORNER mode
-    rectMode(CORNER);
+        if (tutorialStep == 1) {
+            blendMode(BLEND);
+            fill(255);
+            rect(width / 2, height / 10 * 1, 900, 100); // text bg
+            fill(240, 0, 0);
+            textSize(46);
+            text('1. Gain stamina by walking IRL!', width / 2, height / 10 * 1);
+            image(arrowImg, width / 10 * 7.5, height / 10 * 0.4, 100, 100);
+        } else if (tutorialStep == 2) {
+            // tutorial Step 2
+            fill(180,180,180,100);
+            rect(width / 5 * 1, height / 10 * 9, width / 5 * 2, height / 5); // text bg
+            blendMode(BLEND);
+            fill(255);
+            rect(width / 2, height / 10 * 7, width / 4 * 3.5, 90); // text bg
+            fill(240, 0, 0);
+            textSize(38);
+            text('2. With enough stamina, you can move', width / 2, height / 10 * 7);
+        } else if (tutorialStep == 3) {
+            // tutorial Step 3
+            fill(180,180,180,100);
+            rect(width / 5 * 1, height / 10 * 5, width / 5 * 2, height / 5); // text bg
+            blendMode(BLEND);
+            fill(255);
+            rect(width / 4 * 1.5, height / 10 * 3.5, width / 4 * 3, 80); // text bg
+            fill(240, 0, 0);
+            textSize(32);
+            text('3. Find the key and unlock treasure', width / 4 * 1.5, height / 10 * 3.5);
+        } else if (tutorialStep == 4) {
+            // tutorial Step 4
+            fill(180,180,180, 200);
+            rect(100, height - 100, 300, 300, 30);
+            blendMode(BLEND);
+            fill(255);
+            rect(width / 2, height / 10 * 7.5, width / 4 * 2.8, 80); // text bg
+            fill(240, 0, 0);
+            textSize(32);
+            text('4. Check your rewards in your bag', width / 2, height / 10 * 7.5);
+        } else if (tutorialStep == 5) {
+            // tutorial Step 5
+            fill(180,180,180, 100);
+            rect(width / 5 * 4.5, height / 10 * 1, width / 5, height / 5);
+            blendMode(BLEND);
+            fill(255);
+            rect(width / 2, height / 10 * 1, width / 4 * 2.3, 80); // text bg
+            fill(240, 0, 0);
+            textSize(32);
+            text('5. Go next level via portal', width / 2, height / 10 * 1);
+        } 
+        // Change back to default mode
+        rectMode(CORNER);
+    }
 }
 
 // Detect tap or click
@@ -182,6 +215,11 @@ function mousePressed() {
             }
         }
     }
+
+    // Go next tutorial steps
+    tutorialStep++;
+    // if (tutorialStep == 1) {
+    // }
 }
 
 function windowResized() {
