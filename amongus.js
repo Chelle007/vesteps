@@ -28,6 +28,6 @@ function amongus(gameChar_x, gameChar_y) {
 
     // eye
     fill(134, 203, 223);
-    rect(-3, -40, 25, 14, 50)
+    rect(-3, -40, 25, 14, 50);
     pop();
 }

@@ -1,14 +1,19 @@
 function preload(){
-    haze =loadImage("assets/haze.webp")
+    // haze =loadImage("assets/haze.webp")
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight); 
-    background(0);
+    background(200,200,200);
+    gameChar = {
+        x: width/2,
+        y: height/5 * 4,
+        color: 255
+    }
 }
 
 function draw() {
-    amongus(width/2, height/2);
+    amongus(gameChar.x, gameChar.y);
 }
 
 function windowResized() {
