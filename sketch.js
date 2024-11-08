@@ -60,11 +60,16 @@ function setup() {
     nodes.push(new createNode(width / 10 * 9, height / 10 * 1));
     console.log(nodes);
 
-    // Draw among us, update the gameChar.x and gameChar.y according to user's input
     gameChar = {
         x: width / 10 * 1,
         y: height / 10 * 9,
         color: "#CC0000"
+    }
+
+    key = {
+        x: width / 10 * 3,
+        y: height / 10 * 5,
+        isFound: false
     }
 }
 
@@ -101,11 +106,19 @@ function draw() {
     // Draw game character on bottom left (starting point)
     amongus(gameChar.x, gameChar.y, gameChar.color);
 
-    // Draw collectable (key)
-    drawKey(width / 10 * 3, height / 10 * 5, keyIsFound);
+    // Check if the game character is near the key
+    gameCharIsNearKey = dist(gameChar.x, gameChar.y, key.x, key.y) <= 50;
+    if (gameCharIsNearKey) {
+        key.isFound = true;
+        console.log("Key found!");
+    } else if (!key.isFound) {
+        // Draw collectable key if not found
+        drawKey(key.x, key.y)
+    }
+
 
     // Draw treasure (just for preview only)
-    drawTreasure(width / 10 * 1, height / 10 * 5, keyIsFound);
+    drawTreasure(width / 10 * 1, height / 10 * 5, key.isFound);
 
     // Draw portal on top left corner (ending point)
     drawPortal(width / 10 * 9, height / 10 * 1);
@@ -113,11 +126,12 @@ function draw() {
 
 // Detect tap or click
 function mousePressed() {
-    // Calculate the distance from the tap/click to the ellipse center
+    // Calculate the distance from the tap/click to the node center
     for (let i = 0; i < nodes.length; i++) {
         let nodeStatus = nodes[i].isActive();
         if (nodeStatus) {
             if (dist(mouseX, mouseY, nodes[i].x, nodes[i].y) <= 80) {
+                // move the game char to the clicked node
                 console.log ("Ellipse clicked!");
                 gameChar.x = nodes[i].x;
                 gameChar.y = nodes[i].y;
