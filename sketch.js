@@ -1,19 +1,29 @@
-function preload(){
-    // haze =loadImage("assets/haze.webp")
-}
-
 function setup() {
     createCanvas(windowWidth, windowHeight); 
-    background(200,200,200);
+    // background(200,200,200);
     gameChar = {
-        x: width/2,
-        y: height/5 * 4,
-        color: 255
+        x: width / 2,
+        y: height / 10 * 7,
+        color: "#CC0000"
     }
+    
+    angleMode(DEGREES);
+    // TODO: change this later according to
+
+    keyIsFound = false;
 }
 
 function draw() {
-    amongus(gameChar.x, gameChar.y);
+    background(200,200,200);
+    // Draw among us
+    amongus(gameChar.x, gameChar.y, gameChar.color);
+
+    // Draw guide lines (grid system)
+    guideLines();
+    
+    // Draw collectable (key)
+    drawKey(width/2, height/2, keyIsFound);
+
 }
 
 function windowResized() {

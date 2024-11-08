@@ -1,9 +1,14 @@
-function amongus(gameChar_x, gameChar_y) {
+function amongus(gameChar_x, gameChar_y, color) {
+    var x = gameChar_x / 3;
+    var y = gameChar_y / 3;
+
     push();
+    scale(3);
     strokeWeight(1.5);
     stroke(0);
-    translate(gameChar_x, gameChar_y);
-    fill(218, 0, 0);
+    translate(x, y + 20);
+    fill(color);
+
     // left leg
     push();
     translate(-8, -10);
@@ -30,4 +35,19 @@ function amongus(gameChar_x, gameChar_y) {
     fill(134, 203, 223);
     rect(-3, -40, 25, 14, 50);
     pop();
+}
+
+function guideLines() {
+    stroke(255, 0, 0);
+    strokeWeight(1);
+
+    // vertical lines
+    line(width / 3, 0, width / 3, height);
+    line(width / 3*2, 0, width / 3*2, height);
+
+    // Horizontal lines
+    line(0, height / 5, width, height / 5);
+    line(0, height / 5*2, width, height / 5*2);
+    line(0, height / 5*3, width, height / 5*3);
+    line(0, height / 5*4, width, height / 5*4);
 }
