@@ -37,6 +37,7 @@ function amongus(gameChar_x, gameChar_y, color) {
     pop();
 }
 
+// TODO: REMOVE THIS LATER
 function guideLines() {
     stroke(255, 0, 0);
     strokeWeight(1);
