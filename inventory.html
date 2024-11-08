@@ -20,7 +20,7 @@
     <div id="navbar-container"></div>
 
     <div class="left-bottom-img">
-        <a href="map.html"><img src="assets/map.png" alt="Map"></a>
+        <a href="map.html" onclick="saveCharacterAndSkin()"><img src="assets/map.png" alt="Map"></a>
     </div>
 
     <h1>Choose your character</h1>
@@ -28,40 +28,40 @@
     <div id="carouselExampleControls" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="character">
-                    <img class="d-block w-100" src="assets/character-red-amongus.png" alt="Amongus">
-                    <h2>Amongus</h2>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="character">
-                    <img class="d-block w-100" src="assets/character-zombie-amongus.png" alt="Zombie Amongus">
-                    <h2>Zombie Amongus</h2>
+                <div class="character-slider">
+                    <div class="character">
+                        <img id="characterImage" class="d-block w-100" src="assets/character-amongus-none.png"
+                            alt="character">
+                        <h2><span id="characterName">amongus</span></h2>
+                    </div>
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" onclick="prevCharacter()">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden"></span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" onclick="nextCharacter()">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden"></span>
         </a>
     </div>
 
-    <div class="skins-container">
-        <div class="skin" onclick="changeSkin('assets/skin1.png')">
-            <img src="assets/skin1.png" alt="Skin 1" class="skin-img">
-        </div>
-        <div class="skin" onclick="changeSkin('assets/skin2.png')">
-            <img src="assets/skin2.png" alt="Skin 2" class="skin-img">
-        </div>
-        <div class="skin" onclick="changeSkin('assets/skin3.png')">
-            <img src="assets/skin3.png" alt="Skin 3" class="skin-img">
-        </div>
-        <!-- Add more skins as needed -->
-    </div>
+    <table class="skins-container">
+        <tr>
+            <td class="skin" onclick="changeSkin('none')">
+                <img src="assets/none.png" alt="No skin" class="skin-img">
+            </td>
+            <td class="skin" onclick="changeSkin('bowtie')">
+                <img src="assets/bowtie.png" alt="Bowtie" class="skin-img">
+            </td>
+            <td id="moustache" class="skin" onclick="changeSkin('moustache')" style="display: none;">
+                <img src="assets/moustache.png" alt="Moustache" class="skin-img">
+            </td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+    </table>
 
     <script>
         fetch('nav.html')
@@ -90,8 +90,8 @@
         });
     </script>
 
-    <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="inventory.js"></script>
 </body>
 
 </html>

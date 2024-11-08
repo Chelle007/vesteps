@@ -33,9 +33,16 @@ h2 {
     padding: 50px;
 }
 
+.character-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
 .character {
     display: inline-block;
     text-align: center;
+    transition: transform 0.5s ease-in-out;
 }
 
 .character img {
@@ -44,10 +51,6 @@ h2 {
 }
 
 .skins-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    flex-wrap: wrap;
     background-color: #EBEBEB;
     width: 90%;
     height: 700px;
@@ -56,34 +59,19 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.skins-container tr {
+    height: 100px;
+}
+
 .skin {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    /* White background for each skin item */
-    border-radius: 8px;
-    /* Rounded corners for the skin items */
-    padding: 10px;
-    /* Optional: adds padding around the image */
+    width: 200px;
+    background-color: white;
+    text-align: center;
+    border-radius: 50px;
+    margin: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Optional: adds a subtle shadow around each skin */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Smooth hover effect */
 }
 
-.skin:hover {
-    transform: scale(1.05);
-    /* Slightly scale up on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Darker shadow on hover */
-}
-
-.skin-img {
-    max-width: 100%;
-    /* Ensures the image does not exceed the container size */
-    height: auto;
-    /* Maintains aspect ratio */
-    border-radius: 5px;
-    /* Optional: rounded corners for the image */
+.skin img {
+    width: 100px;
 }
