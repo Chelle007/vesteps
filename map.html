@@ -10,13 +10,15 @@
 
   <!-- Include the local js files -->
   <script src="sketch.js" type="text/javascript"></script>
-  <script src="amongus.js" type="text/javascript"></script>
-  <script src="key.js" type="text/javascript"></script>
-  <script src="treasure.js" type="text/javascript"></script>
-  <script src="portal.js" type="text/javascript"></script>
-  <script src="node.js"></script>
+  <script src="drawings/amongus.js" type="text/javascript"></script>
+  <script src="drawings/key.js" type="text/javascript"></script>
+  <script src="drawings/treasure.js" type="text/javascript"></script>
+  <script src="drawings/portal.js" type="text/javascript"></script>
+  <script src="drawings/node.js"></script>
+
   <link href="map.css" rel="stylesheet" type="text/css" />
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
 </head>
 
 <body>
@@ -34,6 +36,20 @@
         document.getElementById('levelValue').textContent = localStorage.getItem('level');
         document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
       });
+
+    // Get the nav height after it is loaded
+    window.onload = () => {
+      setTimeout(() => {
+        const navElement = document.querySelector('nav');
+        if (navElement) {
+          navHeight = navElement.offsetHeight;
+          console.log("The height of the <nav> element is:", navHeight, "pixels");
+        } else {
+          console.log("<nav> element not found");
+        }
+      }, 500); // 500ms delay
+    };
+
   </script>
 </body>
 
