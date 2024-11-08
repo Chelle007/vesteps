@@ -3,22 +3,20 @@
 
 <head>
     <title>VeSteps - Inventory</title>
-    <style>
-        body {
-            font-family: 'Roboto Mono', monospace;
-            height: 100vh;
-            background-color: #0A1920;
-        }
-    </style>
 </head>
 
 <body>
     <div id="navbar-container"></div>
-    <h1>Inventory</h1>
     <script>
+        // Fetch the nav.html content and insert it into the navbar container
         fetch('nav.html')
             .then(response => response.text())
-            .then(data => document.getElementById('navbar-container').innerHTML = data);
+            .then(data => {
+                // Insert the fetched HTML into the navbar container
+                document.getElementById('navbar-container').innerHTML = data;
+                document.getElementById('levelValue').textContent = localStorage.getItem('level');
+                document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
+            });
     </script>
 </body>
 

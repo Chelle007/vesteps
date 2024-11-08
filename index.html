@@ -71,6 +71,7 @@
 
     <script>
         let tokenClient;
+        let initGameFinished = false;
 
         async function requestGoogleFitAccess() {
             tokenClient = google.accounts.oauth2.initTokenClient({
@@ -80,10 +81,9 @@
                     if (tokenResponse.access_token) {
                         console.log("Access token obtained:", tokenResponse.access_token);
                         localStorage.setItem('google_access_token', tokenResponse.access_token);
-                        localStorage.setItem("level", 1);
-                        await getSteps();
+                        await initGame();
 
-                        while (localStorage.getItem('steps') === null) {
+                        while (initGameFinished === false) {
                             await new Promise(resolve => setTimeout(resolve, 100));
                         }
                         window.location.href = 'map.html';
@@ -94,7 +94,14 @@
             tokenClient.requestAccessToken();
         }
 
-        async function getSteps() {
+        async function initGame() {
+            await setSteps();
+            localStorage.setItem("level", 1);
+            localStorage.setItem("characters", JSON.stringify(['default']));
+            initGameFinished = true;
+        }
+
+        async function setSteps() {
             // Retrieve the access token from localStorage
             const accessToken = localStorage.getItem('google_access_token');
             if (!accessToken) {
@@ -154,7 +161,7 @@
                     console.log('Steps:', totalSteps);
                 })
                 .catch(error => {
-                    localStorage.setItem('steps', 1200);
+                    localStorage.setItem('steps', 1000);
                 });
         }
     </script>
