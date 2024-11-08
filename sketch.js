@@ -71,6 +71,12 @@ function setup() {
         y: height / 10 * 5,
         isFound: false
     }
+
+    treasure = {
+        x: width / 10 * 1,
+        y: height / 10 * 5,
+        isFound: false
+    }
 }
 
 function draw() {
@@ -107,18 +113,23 @@ function draw() {
     amongus(gameChar.x, gameChar.y, gameChar.color);
 
     // Check if the game character is near the key
-    gameCharIsNearKey = dist(gameChar.x, gameChar.y, key.x, key.y) <= 50;
-    if (gameCharIsNearKey) {
+    let gameCharIsNearKey = dist(gameChar.x, gameChar.y, key.x, key.y) <= 50;
+    if (gameCharIsNearKey && !key.isFound) {
         key.isFound = true;
         console.log("Key found!");
     } else if (!key.isFound) {
         // Draw collectable key if not found
         drawKey(key.x, key.y)
     }
-
-
+    
+    // Check if the game character is near the treasure
+    let gameCharIsNearTreasure = dist(gameChar.x, gameChar.y, treasure.x, treasure.y) <= 20;
+    if (key.isFound && gameCharIsNearTreasure && !treasure.isFound) {
+        treasure.isFound = true;
+        console.log("Treasure Opened! maybe direct to gacha page");
+    }
     // Draw treasure (just for preview only)
-    drawTreasure(width / 10 * 1, height / 10 * 5, key.isFound);
+    drawTreasure(treasure.x, treasure.y, key.isFound, treasure.isFound);
 
     // Draw portal on top left corner (ending point)
     drawPortal(width / 10 * 9, height / 10 * 1);

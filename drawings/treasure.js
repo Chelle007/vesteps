@@ -1,9 +1,8 @@
-function drawTreasure(x, y, keyState) {
-    let gameCharIsNearTreasure = dist(gameChar.x, gameChar.y, x, y) <= 50;
-    
-    if (gameCharIsNearTreasure && keyState) {
-        image(treasureOpenImg, x, y - 30, 150, 150);
-    } else {
+function drawTreasure(x, y, treasureState) {
+    // When not found yet
+    if (!treasureState) {
         image(treasureCloseImg, x, y - 30, 150, 150);
+    } else if (treasureState) {
+        image(treasureOpenImg, x, y - 30, 150, 150);
     }
 }
