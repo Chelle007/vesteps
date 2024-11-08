@@ -1,0 +1,27 @@
+.left-bottom-img {
+    display: sticky;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.left-bottom-img img {
+    width: 150px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.left-bottom-img a:focus,
+.left-bottom-img a:active,
+.left-bottom-img img:focus,
+.left-bottom-img img:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.left-bottom-img a {
+    -webkit-tap-highlight-color: transparent;
+    /* For mobile browsers */
+    outline: none;
+}
