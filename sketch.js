@@ -58,6 +58,14 @@ function setup() {
     // 2 going left nodes (to portal)
     nodes.push(new createNode(width / 10 * 7, height / 10 * 1));
     nodes.push(new createNode(width / 10 * 9, height / 10 * 1));
+    console.log(nodes);
+
+    // Draw among us, update the gameChar.x and gameChar.y according to user's input
+    gameChar = {
+        x: width / 10 * 1,
+        y: height / 10 * 9,
+        color: "#CC0000"
+    }
 }
 
 function draw() {
@@ -90,13 +98,6 @@ function draw() {
 
     drawNodes();
 
-    // Draw among us, update the gameChar.x and gameChar.y according to user's input
-    gameChar = {
-        x: width / 10 * 1,
-        y: height / 10 * 9,
-        color: "#CC0000"
-    }
-
     // Draw game character on bottom left (starting point)
     amongus(gameChar.x, gameChar.y, gameChar.color);
 
@@ -108,6 +109,21 @@ function draw() {
 
     // Draw portal on top left corner (ending point)
     drawPortal(width / 10 * 9, height / 10 * 1);
+}
+
+// Detect tap or click
+function mousePressed() {
+    // Calculate the distance from the tap/click to the ellipse center
+    for (let i = 0; i < nodes.length; i++) {
+        let nodeStatus = nodes[i].isActive();
+        if (nodeStatus) {
+            if (dist(mouseX, mouseY, nodes[i].x, nodes[i].y) <= 80) {
+                console.log ("Ellipse clicked!");
+                gameChar.x = nodes[i].x;
+                gameChar.y = nodes[i].y;
+            }
+        }
+    }
 }
 
 function windowResized() {
