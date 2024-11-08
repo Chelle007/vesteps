@@ -129,7 +129,7 @@ function draw() {
         console.log("Treasure Opened! maybe direct to gacha page");
     }
     // Draw treasure (just for preview only)
-    drawTreasure(treasure.x, treasure.y, key.isFound, treasure.isFound);
+    drawTreasure(treasure.x, treasure.y, treasure.isFound);
 
     // Draw portal on top left corner (ending point)
     drawPortal(width / 10 * 9, height / 10 * 1);
