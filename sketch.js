@@ -1,5 +1,11 @@
+var gameChar;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    let gameChar_x = width / 2;
+    let gameChar_y = (height / 10) * 7;
+
     gameChar = {
         x: width / 2,
         y: height / 10 * 7,
@@ -10,6 +16,16 @@ function setup() {
     // TODO: change this later according to
 
     keyIsFound = false;
+
+    nodes = [];
+    nodes.push(new createNode(width / 2, (height / 5) * 3));
+    nodes.push(new createNode(width / 2, (height / 5) * 2));
+    nodes.push(new createNode(width / 6, (height / 5) * 2));
+    nodes.push(new createNode(width / 6, height / 5));
+    nodes.push(new createNode((width / 6) * 5, (height / 5) * 2));
+    nodes.push(new createNode((width / 6) * 7, (height / 5) * 2));
+
+
 }
 
 function draw() {
@@ -25,21 +41,7 @@ function draw() {
         line(0, (height / 10) * i, width, (height / 10) * i)
     };
 
-    var node1 = new Node(width / 2, (height / 5) * 3);
-    node1.draw();
-    var node2 = new Node(width / 2, (height / 5) * 2);
-    node2.draw();
-    var node3 = new Node(width / 6, (height / 5) * 2);
-    node3.draw();
-    //End node
-    var node4 = new Node(width / 6, height / 5);
-    node4.draw();
-    //Key node
-    var node5 = new Node((width / 6) * 5, (height / 5) * 2);
-    node5.draw();
-    //Treasure node
-    var node6 = new Node((width / 6) * 7, (height / 5) * 2);
-    node6.draw();
+    drawNodes();
 
     // Draw among us
     amongus(gameChar.x, gameChar.y, gameChar.color);

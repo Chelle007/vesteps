@@ -1,13 +1,22 @@
-function Node(node_x, node_y) {
-    var x = node_x;
-    var y = node_y;
+var nodes;
 
-    this.draw = function () {
-        //Draws the node
-        fill(180);
-        stroke(0);
-        strokeWeight(1);
-        ellipse(x, y, 60);
-        noFill();
+function createNode(x, y) {
+    var node = {
+        x: x,
+        y: y,
+        draw: function () {
+            fill(180);
+            stroke(0);
+            strokeWeight(1);
+            ellipse(x, y, 60);
+            noFill();
+        }
     };
+    return node;
+}
+
+function drawNodes() {
+    for (let i = 0; i < nodes.length; i++) {
+        nodes[i].draw();
+    }
 }
