@@ -21,20 +21,20 @@
 
 <body>
   <div id="navbar-container"></div>
+
+  <div class="left-bottom-img">
+    <a href="inventory.html"><img src="assets/backpack.png" alt="Backpack"></a>
+  </div>
+
   <script>
-    // Fetch the nav.html content and insert it into the navbar container
     fetch('nav.html')
       .then(response => response.text())
       .then(data => {
-        // Insert the fetched HTML into the navbar container
         document.getElementById('navbar-container').innerHTML = data;
         document.getElementById('levelValue').textContent = localStorage.getItem('level');
         document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
       });
   </script>
-  <div class="left-bottom-img">
-    <a href="inventory.html"><img src="assets/backpack.png" alt="Backpack"></a>
-  </div>
 </body>
 
 </html>

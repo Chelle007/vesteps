@@ -5,19 +5,53 @@
     <title>VeSteps - Inventory</title>
 
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="inventory.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div id="navbar-container"></div>
+
     <div class="left-bottom-img">
         <a href="map.html"><img src="assets/map.png" alt="Map"></a>
     </div>
+
+    <div class="character-container">
+        <h1>Choose your character</h1>
+        <!-- Character Image -->
+        <img src="assets/character-amongus.png" alt="Character" class="character-img" id="characterImage">
+        <p id="characterName">AMONGUS</p>
+
+        <!-- Character Selection Arrows -->
+        <div class="carousel-controls">
+            <button id="prevCharacter">←</button>
+            <button id="nextCharacter">→</button>
+        </div>
+    </div>
+
+    <h3>Choose your skin</h3>
+    <div class="skins-container">
+        <!-- Example skins, replace with your PNG images -->
+        <div class="skin" onclick="changeSkin('assets/skin1.png')">
+            <img src="assets/skin1.png" alt="Skin 1" class="skin-img">
+        </div>
+        <div class="skin" onclick="changeSkin('assets/skin2.png')">
+            <img src="assets/skin2.png" alt="Skin 2" class="skin-img">
+        </div>
+        <div class="skin" onclick="changeSkin('assets/skin3.png')">
+            <img src="assets/skin3.png" alt="Skin 3" class="skin-img">
+        </div>
+        <!-- Add more skins as needed -->
+    </div>
+
     <script>
-        // Fetch the nav.html content and insert it into the navbar container
         fetch('nav.html')
             .then(response => response.text())
             .then(data => {
-                // Insert the fetched HTML into the navbar container
                 document.getElementById('navbar-container').innerHTML = data;
                 document.getElementById('levelValue').textContent = localStorage.getItem('level');
                 document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
