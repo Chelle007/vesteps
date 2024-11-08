@@ -1,3 +1,9 @@
+function preload(){
+    treasureOpenImg = loadImage("assets/treasure_open.png");
+    treasureCloseImg = loadImage("assets/treasure_close.png");
+    portalImg = loadImage("assets/portal.png");
+}
+
 var gameChar;
 
 function setup() {
@@ -11,12 +17,19 @@ function setup() {
         y: height / 10 * 7,
         color: "#CC0000"
     }
+    
+    // To determine which level is the user in
+    inLevel = 1;
 
     angleMode(DEGREES);
     // TODO: change this later according to
 
+    // TODO: change this later according to the state of the game functions
     keyIsFound = false;
 
+
+    // Make every image centered
+    imageMode(CENTER);
     nodes = [];
     nodes.push(new createNode(width / 2, (height / 5) * 3));
     nodes.push(new createNode(width / 2, (height / 5) * 2));
@@ -24,12 +37,10 @@ function setup() {
     nodes.push(new createNode(width / 6, height / 5));
     nodes.push(new createNode((width / 6) * 5, (height / 5) * 2));
     nodes.push(new createNode((width / 6) * 7, (height / 5) * 2));
-
-
 }
 
 function draw() {
-    background(200);
+    background(200,200,200);
     //draw guiding lines
     for (let i = 0; i < 7; i++) {
         stroke(255, 0, 0);
@@ -47,6 +58,15 @@ function draw() {
     amongus(gameChar.x, gameChar.y, gameChar.color);
 
     // Draw collectable (key)
+    drawKey(width / 6 * 5, height / 10 * 3, keyIsFound);
+
+    // Draw treasure (just for preview only)
+    drawTreasure(width / 6 * 5, height / 10 * 3, keyIsFound);
+
+    // Draw treasure according to figma (outside canvas)
+    drawTreasure(width / 6 * 7, height / 10 * 3, keyIsFound);
+
+    drawPortal(width / 6 * 1, height / 10 * 1);
     drawKey((width / 6) * 5, (height / 5) * 2, keyIsFound);
 }
 
