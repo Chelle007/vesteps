@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VeSteps - Inventory</title>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        // Fetch the nav.html content and insert it into the navbar container
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                // Insert the fetched HTML into the navbar container
+                document.getElementById('navbar-container').innerHTML = data;
+                document.getElementById('levelValue').textContent = localStorage.getItem('level');
+                document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
+            });
+    </script>
+</body>
+
+</html>

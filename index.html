@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>VeSteps - Sign In</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -71,22 +71,98 @@
 
     <script>
         let tokenClient;
+        let initGameFinished = false;
 
-        function requestGoogleFitAccess() {
+        async function requestGoogleFitAccess() {
             tokenClient = google.accounts.oauth2.initTokenClient({
                 client_id: '314191525165-kc28fl1kea1f7p85o5lhfilt5fkm2tdc.apps.googleusercontent.com',
                 scope: 'https://www.googleapis.com/auth/fitness.activity.read',
-                callback: (tokenResponse) => {
+                callback: async (tokenResponse) => {
                     if (tokenResponse.access_token) {
                         console.log("Access token obtained:", tokenResponse.access_token);
                         localStorage.setItem('google_access_token', tokenResponse.access_token);
+                        await initGame();
+
+                        while (initGameFinished === false) {
+                            await new Promise(resolve => setTimeout(resolve, 100));
+                        }
                         window.location.href = 'map.html';
                     }
                 }
             });
 
-            // Request the access token.
             tokenClient.requestAccessToken();
+        }
+
+        async function initGame() {
+            await setSteps();
+            localStorage.setItem("level", 1);
+            localStorage.setItem("characters", JSON.stringify(['default']));
+            initGameFinished = true;
+        }
+
+        async function setSteps() {
+            // Retrieve the access token from localStorage
+            const accessToken = localStorage.getItem('google_access_token');
+            if (!accessToken) {
+                alert('No access token found. Please log in first.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            console.log("Access Token:", accessToken); // For debugging
+
+            // Get the start of today in milliseconds
+            const now = new Date();
+            const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+            // Set up the API request to Google Fit
+            fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "aggregateBy": [{
+                        "dataTypeName": "com.google.step_count.delta",
+                        "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+                    }],
+                    "bucketByTime": { "durationMillis": 86400000 },
+                    "startTimeMillis": startOfToday, // Start of today at 00:00:00
+                    "endTimeMillis": now.getTime() // Current time
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            throw new Error(JSON.stringify(err));
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Raw response:', data);
+
+                    let totalSteps = 0;
+                    if (data.bucket && data.bucket.length > 0) {
+                        data.bucket.forEach(bucket => {
+                            if (bucket.dataset && bucket.dataset[0].point) {
+                                bucket.dataset[0].point.forEach(point => {
+                                    if (point.value && point.value[0]) {
+                                        totalSteps += point.value[0].intVal || 0;
+                                    }
+                                });
+                            }
+                        });
+                    }
+
+                    localStorage.setItem('steps', totalSteps);
+                    console.log('Steps:', totalSteps);
+                })
+                .catch(error => {
+                    localStorage.setItem('steps', 1000);
+                });
         }
     </script>
 </body>
