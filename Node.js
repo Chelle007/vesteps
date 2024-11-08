@@ -9,5 +9,5 @@ function Node(node_x, node_y) {
         strokeWeight(1);
         ellipse(x, y, 60);
         noFill();
-    }
+    };
 }

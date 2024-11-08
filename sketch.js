@@ -46,7 +46,6 @@ function draw() {
 
     // Draw collectable (key)
     drawKey((width / 6) * 5, (height / 5) * 2, keyIsFound);
-
 }
 
 function windowResized() {
