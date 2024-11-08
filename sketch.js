@@ -13,10 +13,10 @@ function setup() {
 }
 
 function draw() {
-    background(200, 200, 200);
+    background(200);
     //draw guiding lines
     for (let i = 0; i < 7; i++) {
-        stroke(255, 0, 0, 100);
+        stroke(255, 0, 0);
         line((width / 6) * i, 0, (width / 6) * i, height);
     };
 
@@ -26,24 +26,26 @@ function draw() {
     };
 
     var node1 = new Node(width / 2, (height / 5) * 3);
-    var node2 = new Node(width / 2, (height / 5) * 2);
-    var node3 = new Node(width / 6, (height / 5) * 2);
-    var node4 = new Node(width / 6, height / 5);
-    var node5 = new Node((width / 6) * 5, (height / 5) * 2);
-    var node6 = new Node((width / 6) * 7, (height / 5) * 2);
-
     node1.draw();
+    var node2 = new Node(width / 2, (height / 5) * 2);
     node2.draw();
+    var node3 = new Node(width / 6, (height / 5) * 2);
     node3.draw();
+    //End node
+    var node4 = new Node(width / 6, height / 5);
     node4.draw();
+    //Key node
+    var node5 = new Node((width / 6) * 5, (height / 5) * 2);
     node5.draw();
+    //Treasure node
+    var node6 = new Node((width / 6) * 7, (height / 5) * 2);
     node6.draw();
 
     // Draw among us
     amongus(gameChar.x, gameChar.y, gameChar.color);
 
     // Draw collectable (key)
-    drawKey(width / 2, height / 2, keyIsFound);
+    drawKey((width / 6) * 5, (height / 5) * 2, keyIsFound);
 
 }
 
