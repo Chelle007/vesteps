@@ -4,16 +4,9 @@ function preload(){
     portalImg = loadImage("assets/portal.png");
 }
 
-var gameChar;
-
-// Get the nav height after it is loaded
-
-
 function setup() {
     createCanvas(windowWidth, windowHeight - navHeight);
-
-    // let gameChar_x = width / 2;
-    // let gameChar_y = (height / 10) * 7;
+    textFont('Roboto Mono');
 
     gameChar = {
         x: width / 2,
@@ -25,11 +18,6 @@ function setup() {
     inLevel = 1;
 
     angleMode(DEGREES);
-    // TODO: change this later according to
-
-    // TODO: change this later according to the state of the game functions
-    keyIsFound = false;
-
 
     // Make every image centered
     imageMode(CENTER);
@@ -107,7 +95,16 @@ function draw() {
     };
     /////////////////////////////////////////////////////////////////
 
+
+
+
+
+
+
     drawNodes();
+
+    // Draw portal on top left corner (ending point)
+    drawPortal(width / 10 * 9, height / 10 * 1);
 
     // Draw game character on bottom left (starting point)
     amongus(gameChar.x, gameChar.y, gameChar.color);
@@ -119,7 +116,8 @@ function draw() {
         console.log("Key found!");
     } else if (!key.isFound) {
         // Draw collectable key if not found
-        drawKey(key.x, key.y)
+        // Apply rotation along the Y-axis to make it spin
+        drawKey(key.x, key.y);
     }
     
     // Check if the game character is near the treasure
@@ -128,11 +126,41 @@ function draw() {
         treasure.isFound = true;
         console.log("Treasure Opened! maybe direct to gacha page");
     }
-    // Draw treasure (just for preview only)
+    // Draw treasure
     drawTreasure(treasure.x, treasure.y, treasure.isFound);
 
-    // Draw portal on top left corner (ending point)
-    drawPortal(width / 10 * 9, height / 10 * 1);
+    // Tutorial text
+    // Step 1: Darken the whole canvas
+    fill(0, 0, 0, 90); // Semi-transparent black for darkening
+    rect(0, 0, width, height);
+
+    // Step 2: Lighten a specific area
+    blendMode(REMOVE);
+    fill(255);
+
+    // 1. Gain stamina by walking IRL!
+    // 2. With enough stamina, you can move
+    // 3. Find the key and unlock treasure
+    // 4. Go next level via portal
+    
+    // let tutorialStep = 1;
+    
+    // if (tutorialStep == 1) {
+    rectMode(CENTER);
+    textAlign(CENTER, CENTER);
+    rect(width / 2, height / 10 * 1, 900, 100); // Position and size of the lightened area
+    
+    // Reset blend mode to normal
+    blendMode(BLEND);
+    fill(240, 0, 0);
+    textSize(46);
+    text('1. Gain stamina by walking IRL!', width / 2, height / 10 * 1);
+    // text('2. With enough stamina, you can move', 150, 175);
+    // text('3. Find the key and unlock treasure', 150, 200);
+    // text('4. Go next level via portal', 150, 225);
+    
+    // Change back to default CORNER mode
+    rectMode(CORNER);
 }
 
 // Detect tap or click
