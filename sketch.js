@@ -36,7 +36,7 @@ function setup() {
     textFont('Roboto Mono');
 
     // To determine which level is the user in
-    inLevel = 2;
+    inLevel = 1;
     tutorialStep = 1;
 
     angleMode(DEGREES);
