@@ -42,7 +42,7 @@ function gachaPopup() {
             let accessory;
             
             if (imgIndex == 0) {
-                accessory = "mustache";
+                accessory = "moustache";
             } else if (imgIndex == 1) {
                 accessory = "flower";
             } else if (imgIndex == 2) {
