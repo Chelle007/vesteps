@@ -131,7 +131,7 @@ function draw() {
     // Draw treasure
     drawTreasure(treasure.x, treasure.y, treasure.isFound);
 
-    // Tutorial text
+    // Draw tutorial text
     drawTutorial();
 }
 
