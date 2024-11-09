@@ -18,11 +18,13 @@ function preload() {
     for (let i = 0; i <= 1; i++) {
         gachaPicArray[i] = loadImage("assets/gacha/" + i + ".png");
     }
+    bgImg1 = loadImage("assets/level1-bg.png");
 }
 
 function setup() {
+    navHeight = 160;
     let canvas = createCanvas(windowWidth, windowHeight - navHeight);
-    canvas.position(0, 160);
+    canvas.position(0, navHeight);
     textFont('Roboto Mono');
 
     gameChar = {
@@ -90,7 +92,8 @@ function setup() {
 }
 
 function draw() {
-    background(200, 200, 200);
+    background(0);
+    image(bgImg1, width / 2, height / 2, width, height);
 
     ////////////////Stanley style guide lines////////////////////////
     // // draw guiding lines
@@ -165,6 +168,7 @@ function touchStarted() {
             if (dist(touchX, touchY, nodes[i].x, nodes[i].y) <= 80) {
                 // move the game char to the clicked node
                 console.log("Ellipse clicked!");
+                countSteps(10);
                 gameChar.x = nodes[i].x;
                 gameChar.y = nodes[i].y;
             }
@@ -185,4 +189,28 @@ function touchStarted() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight); // Adjusts the canvas size when the window is resized
+}
+
+
+// storage related functions
+
+function countSteps(stepsNeeded) {
+    let stepsTaken = Number(localStorage.getItem("stepsTaken"));
+    let availableSteps = Number(localStorage.getItem("steps"));
+
+    if (stepsNeeded > availableSteps) {
+        return false;
+    }
+
+    localStorage.setItem("stepsTaken", stepsTaken + Number(stepsNeeded));
+    document.getElementById('stepsValue').textContent = Number(localStorage.getItem('steps')) - Number(localStorage.getItem('stepsTaken'));
+    return true;
+}
+
+function claimChest1(accessorry) {
+    localStorage.setItem("skins", JSON.stringify(['none', 'bowtie', accessorry]));
+}
+
+function claimChest2() {
+    localStorage.setItem("characters", JSON.stringify(['amongus', 'zombie amongus']));
 }

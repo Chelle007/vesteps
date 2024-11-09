@@ -14,5 +14,5 @@ fetch('nav.html')
         // Insert the fetched HTML into the navbar container
         document.getElementById('navbar-container').innerHTML = data;
         document.getElementById('levelValue').textContent = localStorage.getItem('level');
-        document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
+        document.getElementById('stepsValue').textContent = localStorage.getItem('steps') - localStorage.getItem('stepsTaken');
     }); -->

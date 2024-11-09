@@ -84,7 +84,7 @@
                         await initGame();
 
                         while (initGameFinished === false) {
-                            await new Promise(resolve => setTimeout(resolve, 100));
+                            await new Promise(resolve => setTimeout(resolve, 500));
                         }
                         window.location.href = 'map.html';
                     }
@@ -97,7 +97,9 @@
         async function initGame() {
             localStorage.setItem("level", 1);
             localStorage.setItem("characters", JSON.stringify(['amongus']));
+            localStorage.setItem("skins", JSON.stringify(['none', 'bowtie']));
             localStorage.setItem("characterAndSkin", "amongus-none");
+            localStorage.setItem("stepsTaken", 0);
             await setSteps();
             initGameFinished = true;
         }

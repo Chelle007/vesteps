@@ -13,6 +13,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
 
 </head>
 
@@ -60,65 +61,74 @@
         </a>
     </div>
 
-    <table class="skins-container">
-        <tr>
-            <td class="skin" onclick="changeSkin('none')">
-                <img src="assets/none.png" alt="No skin" class="skin-img">
-            </td>
-            <td class="skin" onclick="changeSkin('bowtie')">
-                <img src="assets/bowtie.png" alt="Bowtie" class="skin-img">
-            </td>
-            <td id="moustache" class="skin" onclick="changeSkin('moustache')" style="display: none;">
-                <img src="assets/moustache.png" alt="Moustache" class="skin-img">
-            </td>
-        </tr>
-        <tr></tr>
-        <tr></tr>
-    </table>
-
+    <table class="skins-container" id="skinsTable"></table>
 
     <script>
-        // Get the main content container
+        // fade in effect
         const mainContent = document.querySelector('body');
 
-        // Add a class to hide the content initially
         mainContent.classList.add('fade-out');
 
-        // Wait for 500ms before showing the content
         setTimeout(() => {
-            // Remove the fade-out class to show the content
             mainContent.classList.remove('fade-out');
             mainContent.classList.add('fade-in');
         }, 200);
+
+        window.addEventListener('load', function () {
+            // nav
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    document.getElementById('levelValue').textContent = localStorage.getItem('level');
+                    document.getElementById('stepsValue').textContent = localStorage.getItem('steps') - localStorage.getItem('stepsTaken');
+                });
+
+            // skins table
+            const skins = localStorage.getItem('skins') ? JSON.parse(localStorage.getItem('skins')) : ['none', 'bowtie'];
+
+            function createSkinsTable() {
+                const table = document.getElementById('skinsTable');
+
+                if (!table) {
+                    console.error('Could not find skinsTable element');
+                    return;
+                }
+
+                let row = document.createElement('tr');
+
+                skins.forEach(skin => {
+                    const cell = document.createElement('td');
+                    cell.classList.add('skin');
+                    cell.setAttribute('onclick', `changeSkin('${skin}')`);
+
+                    const img = document.createElement('img');
+                    img.src = `assets/${skin}.png`;
+                    img.alt = skin;
+                    img.classList.add('skin-img');
+
+                    img.onerror = () => {
+                        console.error(`Failed to load image: assets/${skin}.png`);
+                        cell.innerHTML = `Missing: ${skin}`;
+                    };
+
+                    cell.appendChild(img);
+                    row.appendChild(cell);
+                });
+
+                table.appendChild(row);
+
+                for (let i = 0; i < 2; i++) {
+                    let emptyRow = document.createElement('tr');
+                    table.appendChild(emptyRow);
+                }
+            }
+
+            createSkinsTable();
+        });
+
     </script>
-    <script>
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-                document.getElementById('levelValue').textContent = localStorage.getItem('level');
-                document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
-            });
 
-        var carousel = document.getElementById('carouselExampleControls');
-        var carouselInstance = new bootstrap.Carousel(carousel, {
-            interval: false,
-            wrap: false
-        });
-
-        var prevBtn = document.querySelector('.carousel-control-prev');
-        var nextBtn = document.querySelector('.carousel-control-next');
-
-        prevBtn.addEventListener('click', function () {
-            carouselInstance.prev();
-        });
-
-        nextBtn.addEventListener('click', function () {
-            carouselInstance.next();
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="inventory.js"></script>
 </body>
 
