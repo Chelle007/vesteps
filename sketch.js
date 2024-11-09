@@ -4,6 +4,14 @@ function preload() {
     portalImg = loadImage("assets/portal.png");
     arrowImg = loadImage("assets/arrow.png");
     bgImg1 = loadImage("assets/level1-bg.png");
+
+    let characterImagePath = "assets/character-" + localStorage.getItem("characterAndSkin") + ".png"
+
+    if (characterImagePath) {
+        character = loadImage(characterImagePath);
+    } else {
+        character = loadImage("assets/character-amongus-none.png");
+    }
 }
 
 function setup() {
@@ -94,15 +102,15 @@ function draw() {
 
     ////////////////Desmond style guide lines////////////////////////
     //draw guiding lines
-    for (let i = 0; i < 6; i++) {
-        stroke(255, 0, 0);
-        line((width / 5) * i, 0, (width / 5) * i, height);
-    };
-    //draw horizontal guiding lines
-    for (let i = 0; i < 11; i++) {
-        stroke(255, 0, 0);
-        line(0, (height / 5) * i, width, (height / 5) * i);
-    };
+    // for (let i = 0; i < 6; i++) {
+    //     stroke(255, 0, 0);
+    //     line((width / 5) * i, 0, (width / 5) * i, height);
+    // };
+    // //draw horizontal guiding lines
+    // for (let i = 0; i < 11; i++) {
+    //     stroke(255, 0, 0);
+    //     line(0, (height / 5) * i, width, (height / 5) * i);
+    // };
     /////////////////////////////////////////////////////////////////
 
     // Level 1 code
