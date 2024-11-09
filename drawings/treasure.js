@@ -42,6 +42,20 @@ function gachaPopup() {
     // Draw current image
     imageMode(CENTER);
     image(img, width/2, height/2);
+    let imgIndex = gachaPicArray.indexOf(img); // Get the index of the selected image
+
+    let accessorry;
+
+    if (michelleCounter == 0) {
+        if (imgIndex == 0) {
+            accessorry = "mustache";
+        } else if (imgIndex == 2) {
+            accessorry = "bowtie";
+        }
+        claimChest1(accessorry);
+        console.log("michelle's func called")
+        michelleCounter++;
+    }
 }
 
 function changeToggle () {

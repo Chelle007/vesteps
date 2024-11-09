@@ -9,6 +9,7 @@ let toggle = true;
 let gachaPicArray = [];
 let img;
 let openGacha = true;
+let michelleCounter = 0;
 
 function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
