@@ -137,12 +137,18 @@ function draw() {
 }
 
 // Detect tap or click
-function mousePressed() {
+function touchStarted() {
+    let touchX;
+    let touchY;
+    if (touches.length > 0) {
+        touchX = touches[0].x;
+        touchY = touches[0].y;
+    }
     // Calculate the distance from the tap/click to the node center
     for (let i = 0; i < nodes.length; i++) {
         let nodeStatus = nodes[i].isActive();
         if (nodeStatus) {
-            if (dist(mouseX, mouseY, nodes[i].x, nodes[i].y) <= 80) {
+            if (dist(touchX, touchY, nodes[i].x, nodes[i].y) <= 80) {
                 // move the game char to the clicked node
                 console.log("Ellipse clicked!");
                 gameChar.x = nodes[i].x;
