@@ -1,8 +1,32 @@
+// Global variables for gacha
+// let timer = 0;
+// let gachaPicArray = [];
+// // rigged gacha
+// let gachaImg;
+// let gachaCounter = 0;
+let timer;
+let toggle = true;
+let gachaPicArray = [];
+let img;
+let openGacha = true;
+
 function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
     arrowImg = loadImage("assets/arrow.png");
+    for (let i = 0; i <= 1; i++) {
+        gachaPicArray[i] = loadImage("assets/gacha/" + i + ".png");
+    }
+    bgImg1 = loadImage("assets/level1-bg.png");
+
+    let characterImagePath = "assets/character-" + localStorage.getItem("characterAndSkin") + ".png"
+
+    if (characterImagePath) {
+        character = loadImage(characterImagePath);
+    } else {
+        character = loadImage("assets/character-amongus-none.png");
+    }
 }
 
 function setup() {
@@ -30,10 +54,15 @@ function initialSetup() {
     else if (inLevel == 2) {
         lvl2Setup();
     }
+
+    // Gacha setup
+    timer = 0;
+    img = random(gachaPicArray);
 }
 
 function draw() {
-    background(200);
+    background(0);
+    image(bgImg1, width / 2, height / 2, width, height);
 
     ////////////////Stanley style guide lines////////////////////////
     // // draw guiding lines
@@ -49,15 +78,15 @@ function draw() {
 
     ////////////////Desmond style guide lines////////////////////////
     //draw guiding lines
-    for (let i = 0; i < 6; i++) {
-        stroke(255, 0, 0);
-        line((width / 5) * i, 0, (width / 5) * i, height);
-    };
-    //draw horizontal guiding lines
-    for (let i = 0; i < 11; i++) {
-        stroke(255, 0, 0);
-        line(0, (height / 5) * i, width, (height / 5) * i);
-    };
+    // for (let i = 0; i < 6; i++) {
+    //     stroke(255, 0, 0);
+    //     line((width / 5) * i, 0, (width / 5) * i, height);
+    // };
+    // //draw horizontal guiding lines
+    // for (let i = 0; i < 11; i++) {
+    //     stroke(255, 0, 0);
+    //     line(0, (height / 5) * i, width, (height / 5) * i);
+    // };
     /////////////////////////////////////////////////////////////////
 
     if (inLevel == 1) {
@@ -115,6 +144,7 @@ function touchStarted() {
                 if (clickNode <= 80) {
                     // move the game char to the clicked node
                     console.log("Ellipse clicked!");
+                    countSteps(10);
                     gameChar.x = lvl1Nodes[i].x;
                     gameChar.y = lvl1Nodes[i].y;
                 }
@@ -129,6 +159,7 @@ function touchStarted() {
                 if (clickNode <= 80) {
                     // move the game char to the clicked node
                     console.log("Ellipse clicked!");
+                    countSteps(20);
                     gameChar.x = lvl2Nodes[i].x;
                     gameChar.y = lvl2Nodes[i].y;
                 }
@@ -138,8 +169,40 @@ function touchStarted() {
 
     // Go next tutorial steps
     tutorialStep++;
+
+    // when user is in the gacha pop up, and tap the screen, it will go back to map
+    if (treasure.isFound && openGacha) {
+        // remove the gacha popup
+        openGacha = false;
+        console.log("close gacha pop up", openGacha);
+        rectMode(CORNER);
+    }
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight); // Adjusts the canvas size when the window is resized
+}
+
+
+// storage related functions
+
+function countSteps(stepsNeeded) {
+    let stepsTaken = Number(localStorage.getItem("stepsTaken"));
+    let availableSteps = Number(localStorage.getItem("steps"));
+
+    if (stepsNeeded > availableSteps) {
+        return false;
+    }
+
+    localStorage.setItem("stepsTaken", stepsTaken + Number(stepsNeeded));
+    document.getElementById('stepsValue').textContent = Number(localStorage.getItem('steps')) - Number(localStorage.getItem('stepsTaken'));
+    return true;
+}
+
+function claimChest1(accessorry) {
+    localStorage.setItem("skins", JSON.stringify(['none', 'bowtie', accessorry]));
+}
+
+function claimChest2() {
+    localStorage.setItem("characters", JSON.stringify(['amongus', 'zombie amongus']));
 }
