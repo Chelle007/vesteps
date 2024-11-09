@@ -1,12 +1,11 @@
 function countSteps(stepsNeeded) {
-    stepsTaken = localStorage.getItem("stepsTaken");
-    availableSteps = localStorage.getItem("steps");
+    let stepsTaken = parseInt(localStorage.getItem("stepsTaken"), 10);
+    let availableSteps = parseInt(localStorage.getItem("steps"), 10);
 
     if (stepsNeeded > availableSteps) {
         return false;
     }
 
-    localStorage.setItem("steps", availableSteps - stepsNeeded);
     localStorage.setItem("stepsTaken", stepsTaken + stepsNeeded);
     return true;
 }
