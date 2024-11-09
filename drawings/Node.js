@@ -22,7 +22,7 @@ function createNode(x, y) {
             }
             strokeWeight(18);
             ellipse(x, y, width / 5 * 0.6);
-            
+
             // Reset styling
             noFill();
             strokeWeight(1);
@@ -30,10 +30,4 @@ function createNode(x, y) {
         }
     };
     return node;
-}
-
-function drawNodes() {
-    for (let i = 0; i < nodes.length; i++) {
-        nodes[i].draw();
-    }
 }
