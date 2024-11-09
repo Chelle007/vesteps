@@ -35,7 +35,7 @@
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
         document.getElementById('levelValue').textContent = localStorage.getItem('level');
-        document.getElementById('stepsValue').textContent = localStorage.getItem('steps');
+        document.getElementById('stepsValue').textContent = localStorage.getItem('steps') - localStorage.getItem('stepsTaken');
       });
 
     // Get the nav height after it is loaded
