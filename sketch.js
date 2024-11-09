@@ -17,6 +17,7 @@ function preload() {
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
     arrowImg = loadImage("assets/arrow.png");
+    zombieImg = loadImage("assets/character-zombie amongus-none.png");
     for (let i = 0; i <= 2; i++) {
         gachaPicArray[i] = loadImage("assets/gacha/" + i + ".png");
     }

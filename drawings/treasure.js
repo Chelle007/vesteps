@@ -5,7 +5,13 @@ function drawTreasure(x, y, treasureState) {
     } else if (treasureState) {
         image(treasureOpenImg, x, y - 30, 150, 150);
         if (openGacha) {
-            gachaPopup();
+            const inLevel = localStorage.getItem("level");
+            if (inLevel == 1) {
+                gachaPopup();
+            }
+            else if (inLevel == 2) {
+                gachaPopup2();
+            }
         }
     }
 }
@@ -15,7 +21,7 @@ function gachaPopup() {
 
     // Draw container
     rectMode(CENTER);
-    fill(235, 235, 0, 150);
+    fill(235, 235, 0, 200);
     strokeWeight(15);
     stroke(100, 0, 100);
     rect(width/2, height/2, width/1.2, width/1.2);
@@ -58,4 +64,16 @@ function gachaPopup() {
     // Draw current image
     imageMode(CENTER);
     image(img, width/2, height/2);
+}
+
+function gachaPopup2() { 
+    // Draw container
+    rectMode(CENTER);
+    fill(235, 235, 0, 200);
+    strokeWeight(15);
+    stroke(100, 0, 100);
+    rect(width/2, height/2, width/1.2, width/1.2);
+
+    image(zombieImg, width/2, height/2);
+    claimChest2();
 }
