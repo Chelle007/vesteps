@@ -9,13 +9,14 @@ let toggle = true;
 let gachaPicArray = [];
 let img;
 let openGacha = true;
+let michelleCounter = 0;
 
 function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
     arrowImg = loadImage("assets/arrow.png");
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i <= 2; i++) {
         gachaPicArray[i] = loadImage("assets/gacha/" + i + ".png");
     }
     bgImg1 = loadImage("assets/level1-bg.png");

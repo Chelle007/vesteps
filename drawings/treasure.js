@@ -11,10 +11,9 @@ function drawTreasure(x, y, treasureState) {
 }
 
 function gachaPopup() {
-    background(0,0,0,0, 0.2);
+    background(0, 0, 0, 0, 0.2);
 
     // Draw container
-    // noStroke();
     rectMode(CENTER);
     fill(235, 235, 0, 150);
     strokeWeight(15);
@@ -24,7 +23,6 @@ function gachaPopup() {
     noStroke();
     rectMode(CORNER);
 
-    // Draw text
     // Simple toggle-based animation
     if (toggle) {
         if (frameCount % 3 === 0) { // Change image every 3 frames for smooth animation
@@ -37,13 +35,27 @@ function gachaPopup() {
     if (timer > 40) {
         timer = 0;
         toggle = false;
+        
+        // Only check the final result when animation stops
+        if (michelleCounter == 0) {
+            let imgIndex = gachaPicArray.indexOf(img); // Get the index of the final image
+            let accessory;
+            
+            if (imgIndex == 0) {
+                accessory = "mustache";
+            } else if (imgIndex == 1) {
+                accessory = "flower";
+            } else if (imgIndex == 2) {
+                accessory = "love";
+            }
+            
+            claimChest1(accessory);
+            console.log("michelle's func called " + accessory);
+            michelleCounter++;
+        }
     }
 
     // Draw current image
     imageMode(CENTER);
     image(img, width/2, height/2);
-}
-
-function changeToggle () {
-    toggle = true;
 }
