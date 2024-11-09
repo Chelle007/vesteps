@@ -10,6 +10,7 @@ let gachaPicArray = [];
 let img;
 let openGacha = true;
 let michelleCounter = 0;
+let inLevel;
 
 function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
@@ -37,7 +38,7 @@ function setup() {
     textFont('Roboto Mono');
 
     // To determine which level is the user in
-    inLevel = 1;
+    inLevel = localStorage.getItem("level");
     tutorialStep = 1;
 
     angleMode(DEGREES);
