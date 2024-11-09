@@ -65,31 +65,6 @@ function draw() {
     background(0);
     image(bgImg1, width / 2, height / 2, width, height);
 
-    ////////////////Stanley style guide lines////////////////////////
-    // // draw guiding lines
-    // for (let i = 0; i < 11; i++) {
-    //     stroke(255, 0, 0);
-    //     line((width / 10) * i, 0, (width / 10) * i, height);
-    // };
-    // //draw horizontal guiding lines
-    // for (let i = 0; i < 11; i++) {
-    //     stroke(255, 0, 0);
-    //     line(0, (height / 10) * i, width, (height / 10) * i);
-    // };
-
-    ////////////////Desmond style guide lines////////////////////////
-    //draw guiding lines
-    // for (let i = 0; i < 6; i++) {
-    //     stroke(255, 0, 0);
-    //     line((width / 5) * i, 0, (width / 5) * i, height);
-    // };
-    // //draw horizontal guiding lines
-    // for (let i = 0; i < 11; i++) {
-    //     stroke(255, 0, 0);
-    //     line(0, (height / 5) * i, width, (height / 5) * i);
-    // };
-    /////////////////////////////////////////////////////////////////
-
     if (inLevel == 1) {
         // Level 1 code
         lvl1Draw();
@@ -99,13 +74,10 @@ function draw() {
         lvl2Draw();
     }
 
-
-
     // Check if the game character is near the key
     checkGameCharNearKey();
     // Check if the game character is near the treasure
     checkGameCharNearTreasure();
-
 }
 
 function checkGameCharNearKey() {
@@ -186,7 +158,6 @@ function windowResized() {
 
 
 // storage related functions
-
 function countSteps(stepsNeeded) {
     let stepsTaken = Number(localStorage.getItem("stepsTaken"));
     let availableSteps = Number(localStorage.getItem("steps"));
