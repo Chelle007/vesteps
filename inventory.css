@@ -1,12 +1,14 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #0A1920 !important;
+    background-color: rgba(10, 25, 32) !important;
     text-align: center !important;
     padding-top: 50px;
     font-family: 'Geo', monospace !important;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow: hidden !important;
+    position: relative !important;
+    opacity: 0;
 }
 
 h1 {
@@ -51,12 +53,12 @@ h2 {
 }
 
 .skins-container {
-    background-color: #EBEBEB;
+    background-color: #ebebeb85;
     width: 90%;
     height: 700px;
     margin: 80px auto;
     border-radius: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
 
 .skins-container tr {
@@ -65,7 +67,8 @@ h2 {
 
 .skin {
     width: 200px;
-    background-color: white;
+    background-color: #FFFFFF;
+    opacity: 0.7;
     text-align: center;
     border-radius: 50px;
     margin: 30px;
@@ -74,4 +77,165 @@ h2 {
 
 .skin img {
     width: 100px;
+}
+
+/* Hide content initially */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Fade in content after delay */
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Shooting stars background */
+.shooting-stars {
+    position: fixed !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background-image: url('assets/stars-bg.jpg') !important;
+    background-position: center !important;
+    background-size: cover !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    z-index: -1000 !important;
+    /* animation: animateBg 5s linear infinite !important; */
+}
+
+@keyframes animateBg {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.shooting-stars span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1),
+        0 0 0 6px rgba(255, 255, 255, 0.1),
+        0 0 3px rgba(255, 255, 255, 1),
+        0 0 9px rgba(255, 255, 255, 1);
+    animation: animate 5s linear infinite;
+}
+
+.shooting-stars span::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, #fff, transparent);
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(315deg) translateX(0)
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+
+.shooting-stars span:nth-child(1) {
+    top: 300px;
+    right: 300px;
+    left: initial;
+    animation-delay: 0;
+    animation-duration: 1s;
+}
+
+.shooting-stars span:nth-child(2) {
+    top: 70px;
+    right: 80px;
+    left: initial;
+    animation-delay: 0.2s;
+    animation-duration: 3s;
+}
+
+.shooting-stars span:nth-child(3) {
+    top: 80px;
+    right: 20px;
+    left: initial;
+    animation-delay: 0.4s;
+    animation-duration: 2s;
+}
+
+.shooting-stars span:nth-child(4) {
+    top: 0px;
+    right: 180px;
+    left: initial;
+    animation-delay: 0.6s;
+    animation-duration: 1.5s;
+}
+
+.shooting-stars span:nth-child(5) {
+    top: 0px;
+    right: 400px;
+    left: initial;
+    animation-delay: 0.8s;
+    animation-duration: 2.5s;
+}
+
+.shooting-stars span:nth-child(6) {
+    top: 0px;
+    right: 600px;
+    left: initial;
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+
+.shooting-stars span:nth-child(7) {
+    top: 600px;
+    right: -10px;
+    left: initial;
+    animation-delay: 1.2s;
+    animation-duration: 1.75s;
+}
+
+.shooting-stars span:nth-child(8) {
+    top: 0px;
+    right: 700px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 1.25s;
+}
+
+.shooting-stars span:nth-child(9) {
+    top: 400px;
+    right: -10px;
+    left: initial;
+    animation-delay: 0.7s;
+    animation-duration: 2.25s;
+}
+
+.shooting-stars span:nth-child(10) {
+    top: 0px;
+    right: 450px;
+    left: initial;
+    animation-delay: 2.75s;
+    animation-duration: 2.25s;
 }

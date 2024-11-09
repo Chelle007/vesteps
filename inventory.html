@@ -17,6 +17,19 @@
 </head>
 
 <body>
+    <div class="shooting-stars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <div id="navbar-container"></div>
 
     <div class="left-bottom-img">
@@ -63,6 +76,21 @@
         <tr></tr>
     </table>
 
+
+    <script>
+        // Get the main content container
+        const mainContent = document.querySelector('body');
+
+        // Add a class to hide the content initially
+        mainContent.classList.add('fade-out');
+
+        // Wait for 500ms before showing the content
+        setTimeout(() => {
+            // Remove the fade-out class to show the content
+            mainContent.classList.remove('fade-out');
+            mainContent.classList.add('fade-in');
+        }, 200);
+    </script>
     <script>
         fetch('nav.html')
             .then(response => response.text())

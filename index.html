@@ -97,6 +97,7 @@
         async function initGame() {
             localStorage.setItem("level", 1);
             localStorage.setItem("characters", JSON.stringify(['amongus']));
+            localStorage.setItem("characterAndSkin", "amongus-none");
             await setSteps();
             initGameFinished = true;
         }
