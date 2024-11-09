@@ -21,6 +21,7 @@ function preload() {
         gachaPicArray[i] = loadImage("assets/gacha/" + i + ".png");
     }
     bgImg1 = loadImage("assets/level1-bg.png");
+    bgImg2 = loadImage("assets/level2-bg.png");
 
     let characterImagePath = "assets/character-" + localStorage.getItem("characterAndSkin") + ".png"
 
@@ -63,9 +64,6 @@ function initialSetup() {
 }
 
 function draw() {
-    background(0);
-    image(bgImg1, width / 2, height / 2, width, height);
-
     if (inLevel == 1) {
         // Level 1 code
         lvl1Draw();
