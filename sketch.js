@@ -3,6 +3,7 @@ function preload() {
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
     arrowImg = loadImage("assets/arrow.png");
+    bgImg1 = loadImage("assets/level1-bg.png");
 }
 
 function setup() {
@@ -76,7 +77,8 @@ function setup() {
 }
 
 function draw() {
-    background(200, 200, 200);
+    background(0);
+    image(bgImg1, width / 2, height / 2, width, height);
 
     ////////////////Stanley style guide lines////////////////////////
     // // draw guiding lines
