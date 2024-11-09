@@ -12,7 +12,7 @@ function setup() {
     textFont('Roboto Mono');
 
     // To determine which level is the user in
-    inLevel = 1;
+    inLevel = 2;
     tutorialStep = 1;
 
     angleMode(DEGREES);
@@ -121,9 +121,20 @@ function touchStarted() {
             }
         }
     }
-    // else if (inLevel == 2){
-
-    // }
+    else if (inLevel == 2) {
+        for (let i = 0; i < lvl2Nodes.length; i++) {
+            let nodeStatus = lvl2Nodes[i].isActive();
+            if (nodeStatus) {
+                let clickNode = dist(touchX, touchY, lvl2Nodes[i].x, lvl2Nodes[i].y)
+                if (clickNode <= 80) {
+                    // move the game char to the clicked node
+                    console.log("Ellipse clicked!");
+                    gameChar.x = lvl2Nodes[i].x;
+                    gameChar.y = lvl2Nodes[i].y;
+                }
+            }
+        }
+    }
 
     // Go next tutorial steps
     tutorialStep++;
