@@ -6,8 +6,9 @@ function preload() {
 }
 
 function setup() {
+    navHeight = 160;
     let canvas = createCanvas(windowWidth, windowHeight - navHeight);
-    canvas.position(0, 160);
+    canvas.position(0, navHeight);
 
     // let gameChar_x = width / 2;
     // let gameChar_y = (height / 10) * 7;
