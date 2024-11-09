@@ -46,6 +46,9 @@ function lvl1Setup() {
 }
 
 function lvl1Draw() {
+    background(0);
+    image(bgImg1, width / 2, height / 2, width, height);
+
     // Draw nodes in level 1
     for (let i = 0; i < lvl1Nodes.length; i++) {
         lvl1Nodes[i].draw()

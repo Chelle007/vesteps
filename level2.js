@@ -50,6 +50,9 @@ function lvl2Setup() {
 }
 
 function lvl2Draw() {
+    background(0);
+    image(bgImg2, width / 2, height / 2, width, height);
+
     // Draw nodes in level 1
     for (let i = 0; i < lvl2Nodes.length; i++) {
         lvl2Nodes[i].draw()
