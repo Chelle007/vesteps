@@ -1,8 +1,23 @@
+// Global variables for gacha
+// let timer = 0;
+// let gachaPicArray = [];
+// // rigged gacha
+// let gachaImg;
+// let gachaCounter = 0;
+let timer;
+let toggle = true;
+let gachaPicArray = [];
+let img;
+let openGacha = true;
+
 function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
     treasureCloseImg = loadImage("assets/treasure_close.png");
     portalImg = loadImage("assets/portal.png");
     arrowImg = loadImage("assets/arrow.png");
+    for (let i = 0; i <= 1; i++) {
+        gachaPicArray[i] = loadImage("assets/gacha/" + i + ".png");
+    }
     bgImg1 = loadImage("assets/level1-bg.png");
 
     let characterImagePath = "assets/character-" + localStorage.getItem("characterAndSkin") + ".png"
@@ -18,10 +33,6 @@ function setup() {
     navHeight = 160;
     let canvas = createCanvas(windowWidth, windowHeight - navHeight);
     canvas.position(0, navHeight);
-
-    // let gameChar_x = width / 2;
-    // let gameChar_y = (height / 10) * 7;
-    // createCanvas(windowWidth, windowHeight - navHeight);
     textFont('Roboto Mono');
 
     gameChar = {
@@ -82,6 +93,10 @@ function setup() {
         y: height / 10 * 5,
         isFound: false
     }
+
+    // Gacha setup
+    timer = 0;
+    img = random(gachaPicArray);
 }
 
 function draw() {
@@ -170,6 +185,14 @@ function touchStarted() {
 
     // Go next tutorial steps
     tutorialStep++;
+
+    // when user is in the gacha pop up, and tap the screen, it will go back to map
+    if (treasure.isFound && openGacha) {
+        // remove the gacha popup
+        openGacha = false;
+        console.log("close gacha pop up", openGacha);
+        rectMode(CORNER);
+    }
 }
 
 function windowResized() {
