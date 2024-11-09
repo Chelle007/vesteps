@@ -2,8 +2,6 @@ function lvl2Setup() {
     // initialise the array for nodes in level 2
     lvl2Nodes = [];
 
-    // start node
-
     // Nodes in the bottom row
     lvl2Nodes.push(new createNode(width / 10 * 3, height / 10 * 9));
     lvl2Nodes.push(new createNode(width / 2, height / 10 * 9));
@@ -15,11 +13,11 @@ function lvl2Setup() {
     lvl2Nodes.push(new createNode(width / 10 * 9, height / 10 * 7));
 
     // Nodes in the middle row
-    lvl2Nodes.push(new createNode(width / 10, height / 10 * 5));
-    lvl2Nodes.push(new createNode(width / 10 * 3, height / 10 * 5));
-    lvl2Nodes.push(new createNode(width / 2, height / 10 * 5));
-    lvl2Nodes.push(new createNode(width / 10 * 7, height / 10 * 5));
-    lvl2Nodes.push(new createNode(width / 10 * 9, height / 10 * 5));
+    lvl2Nodes.push(new createNode(width / 10, height / 2));
+    lvl2Nodes.push(new createNode(width / 10 * 3, height / 2));
+    lvl2Nodes.push(new createNode(width / 2, height / 2));
+    lvl2Nodes.push(new createNode(width / 10 * 7, height / 2));
+    lvl2Nodes.push(new createNode(width / 10 * 9, height / 2));
 
     // Nodes in the second row from the top
     lvl2Nodes.push(new createNode(width / 10, height / 10 * 3));
@@ -30,15 +28,10 @@ function lvl2Setup() {
     lvl2Nodes.push(new createNode(width / 10 * 7, height / 10));
     lvl2Nodes.push(new createNode(width / 10 * 9, height / 10));
 
-
-
-
-    // lvl2Nodes.push(new createNode(width / 10 * 5, height / 10 * 3));
-
     console.log(lvl2Nodes);
 
     gameChar = {
-        x: width / 10 * 1,
+        x: width / 10,
         y: height / 10 * 9,
         color: "#CC0000"
     }
@@ -50,7 +43,7 @@ function lvl2Setup() {
     }
 
     treasure = {
-        x: width / 10 * 1,
+        x: width / 10,
         y: height / 10,
         isFound: false
     }
