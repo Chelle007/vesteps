@@ -3,30 +3,30 @@ function lvl2Setup() {
     lvl2Nodes = [];
 
     // Nodes in the bottom row
-    lvl2Nodes.push(new createNode(width / 10 * 3, height / 10 * 9));
-    lvl2Nodes.push(new createNode(width / 2, height / 10 * 9));
-    lvl2Nodes.push(new createNode(width / 10 * 7, height / 10 * 9));
-    lvl2Nodes.push(new createNode(width / 10 * 9, height / 10 * 9));
+    lvl2Nodes.push(new Node(width / 10 * 3, height / 10 * 9));
+    lvl2Nodes.push(new Node(width / 2, height / 10 * 9));
+    lvl2Nodes.push(new Node(width / 10 * 7, height / 10 * 9));
+    lvl2Nodes.push(new Node(width / 10 * 9, height / 10 * 9));
 
     // Nodes in the second row from the bottom
-    lvl2Nodes.push(new createNode(width / 2, height / 10 * 7));
-    lvl2Nodes.push(new createNode(width / 10 * 9, height / 10 * 7));
+    lvl2Nodes.push(new Node(width / 2, height / 10 * 7));
+    lvl2Nodes.push(new Node(width / 10 * 9, height / 10 * 7));
 
     // Nodes in the middle row
-    lvl2Nodes.push(new createNode(width / 10, height / 2));
-    lvl2Nodes.push(new createNode(width / 10 * 3, height / 2));
-    lvl2Nodes.push(new createNode(width / 2, height / 2));
-    lvl2Nodes.push(new createNode(width / 10 * 7, height / 2));
-    lvl2Nodes.push(new createNode(width / 10 * 9, height / 2));
+    lvl2Nodes.push(new Node(width / 10, height / 2));
+    lvl2Nodes.push(new Node(width / 10 * 3, height / 2));
+    lvl2Nodes.push(new Node(width / 2, height / 2));
+    lvl2Nodes.push(new Node(width / 10 * 7, height / 2));
+    lvl2Nodes.push(new Node(width / 10 * 9, height / 2));
 
     // Nodes in the second row from the top
-    lvl2Nodes.push(new createNode(width / 10, height / 10 * 3));
-    lvl2Nodes.push(new createNode(width / 10 * 7, height / 10 * 3));
+    lvl2Nodes.push(new Node(width / 10, height / 10 * 3));
+    lvl2Nodes.push(new Node(width / 10 * 7, height / 10 * 3));
 
     // Nodes in top row
-    lvl2Nodes.push(new createNode(width / 10, height / 10));
-    lvl2Nodes.push(new createNode(width / 10 * 7, height / 10));
-    lvl2Nodes.push(new createNode(width / 10 * 9, height / 10));
+    lvl2Nodes.push(new Node(width / 10, height / 10));
+    lvl2Nodes.push(new Node(width / 10 * 7, height / 10));
+    lvl2Nodes.push(new Node(width / 10 * 9, height / 10));
 
     console.log(lvl2Nodes);
 

@@ -1,29 +1,29 @@
 function lvl1Setup() {
     lvl1Nodes = [];
     // start node
-    lvl1Nodes.push(new createNode(width / 10, height / 2));
+    lvl1Nodes.push(new Node(width / 10, height / 2));
 
     // 2 going right nodes
-    lvl1Nodes.push(new createNode(width / 10 * 3, height / 10 * 9));
-    lvl1Nodes.push(new createNode(width / 2, height / 10 * 9));
+    lvl1Nodes.push(new Node(width / 10 * 3, height / 10 * 9));
+    lvl1Nodes.push(new Node(width / 2, height / 10 * 9));
 
     // 3 going up nodes
-    lvl1Nodes.push(new createNode(width / 10 * 7, height / 2));
-    lvl1Nodes.push(new createNode(width / 10 * 7, height / 10 * 7));
-    lvl1Nodes.push(new createNode(width / 10 * 7, height / 10 * 9));
+    lvl1Nodes.push(new Node(width / 10 * 7, height / 2));
+    lvl1Nodes.push(new Node(width / 10 * 7, height / 10 * 7));
+    lvl1Nodes.push(new Node(width / 10 * 7, height / 10 * 9));
 
     // 2 going left nodes (go to chest)
-    lvl1Nodes.push(new createNode(width / 2, height / 2));
-    lvl1Nodes.push(new createNode(width / 10 * 3, height / 2));
-    lvl1Nodes.push(new createNode(width / 10, height / 2));
+    lvl1Nodes.push(new Node(width / 2, height / 2));
+    lvl1Nodes.push(new Node(width / 10 * 3, height / 2));
+    lvl1Nodes.push(new Node(width / 10, height / 2));
 
     // 2 going up nodes
-    lvl1Nodes.push(new createNode(width / 2, height / 10 * 3));
-    lvl1Nodes.push(new createNode(width / 2, height / 10));
+    lvl1Nodes.push(new Node(width / 2, height / 10 * 3));
+    lvl1Nodes.push(new Node(width / 2, height / 10));
 
     // 2 going left nodes (to portal)
-    lvl1Nodes.push(new createNode(width / 10 * 7, height / 10));
-    lvl1Nodes.push(new createNode(width / 10 * 9, height / 10));
+    lvl1Nodes.push(new Node(width / 10 * 7, height / 10));
+    lvl1Nodes.push(new Node(width / 10 * 9, height / 10));
     console.log(lvl1Nodes);
 
     gameChar = {
