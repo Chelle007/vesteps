@@ -37,7 +37,22 @@ class Node {
     }
 
     isActive() {
-        return dist(this.x, this.y, gameChar.x, gameChar.y) < width / 5 * 1.6;
+        fill(255,0,0,0);
+        // vertical rectangle
+        rect(this.x - (width / 5 * 0.4 / 2), this.y - (height / 5 * 1.6 / 2), width / 5 *0.4, height / 5 * 1.6);
+        rect(gameChar.x - (width / 5 * 0.7/2), gameChar.y - (height / 5 * 1.6 / 2), width / 5 * 0.7, height / 5 * 1.6);
+        
+        // horizontal rectangle
+        rect(this.x - (width / 5 * 1.6 / 2), this.y - (height / 5 * 0.4 / 2), width / 5 * 1.6, height / 5 * 0.4);
+        rect(gameChar.x - (width / 5 * 1.6 / 2), gameChar.y - (height / 5 * 0.5 / 2), width / 5 * 1.6, height / 5 * 0.5);
+
+        // Collision detection library from https://github.com/bmoren/p5.collide2D?tab=readme-ov-file#colliderectrect
+        // Params collideRectRect(x, y, width, height, x2, y2, width2, height2 )
+        hitTopDown = collideRectRect(gameChar.x - (width / 5 * 0.7/2), gameChar.y - (height / 5 * 1.6 / 2), width / 5 * 0.7, height / 5 * 1.6, this.x - (width / 5 * 0.4 / 2), this.y - (height / 5 * 1.6 / 2), width / 5 *0.4, height / 5 * 1.6);
+        hitRightLeft = collideRectRect(gameChar.x - (width / 5 * 1.6 / 2), gameChar.y - (height / 5 * 0.5 / 2), width / 5 * 1.6, height / 5 * 0.5, this.x - (width / 5 * 1.6 / 2), this.y - (height / 5 * 0.4 / 2), width / 5 * 1.6, height / 5 * 0.4);
+        
+        // If either hitTopDown or hitRightLeft is true, return true
+        return hitTopDown || hitRightLeft;
     }
 
     draw() {

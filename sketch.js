@@ -11,6 +11,9 @@ let img;
 let openGacha = true;
 let michelleCounter = 0;
 let inLevel;
+// Node collision
+hitTopDown = false;
+hitRightLeft = false;
 
 function preload() {
     treasureOpenImg = loadImage("assets/treasure_open.png");
