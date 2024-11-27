@@ -26,7 +26,7 @@ Create a game that promotes physical or mental health through multiple levels an
 
 ## Contributors
 
-- **@Chelle007** — Javascript Developer
+- **@Chelle007** — Javascript Web Developer
 - **@desraymondz** — P5.js Developer
 - **@StanleyLaurenz** — P5.js Developer
 - **@danicosm** — UX/UI Designer
