@@ -49,8 +49,20 @@ function lvl2Setup() {
     }
 }
 
+// end screen flag
+let endScreen = false;
+
 function lvl2Draw() {
     background(0);
+
+    // When user reached the end of level 2, display end screen
+    if (endScreen) {
+        // Remove key whether found or not
+        key.isFound = true;
+        drawEndScreen();
+        return
+    }
+
     image(bgImg2, width / 2, height / 2, width, height);
 
     // Draw nodes in level 1
