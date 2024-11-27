@@ -37,6 +37,10 @@
             color: white;
         }
 
+        .mb-4 {
+            margin-bottom: 40px;
+        }
+
         @keyframes typing {
             from {
                 width: 0;
@@ -64,9 +68,32 @@
 <body class="d-flex justify-content-center align-items-center">
     <div class="container text-center">
         <h1 class="mb-4 text-white typing-animation">Welcome to VeSteps!</h1><br>
-        <button class="signin-btn" onclick="requestGoogleFitAccess()">
+        <button class="signin-btn mb-4" onclick="requestGoogleFitAccess()">
             <i class="fab fa-google me-2"></i>
-            Sign In</button>
+            Sign In
+        </button>
+        <button class="mb-4 signin-btn" onclick="initGuestGame()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
+            Play as Guest
+        </button>
+        <div class="text-white">
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                </svg>
+                Sign in will get real steps data from Google Fit step count
+            </p>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                </svg>
+                Guest will get 1500 steps by default
+            </p>
+        </div>
     </div>
 
     <script>
@@ -102,6 +129,18 @@
             localStorage.setItem("stepsTaken", 0);
             await setSteps();
             initGameFinished = true;
+        }
+
+        async function initGuestGame() {
+            localStorage.setItem("level", 1);
+            localStorage.setItem("characters", JSON.stringify(['amongus']));
+            localStorage.setItem("skins", JSON.stringify(['none', 'bowtie']));
+            localStorage.setItem("characterAndSkin", "amongus-none");
+            localStorage.setItem("stepsTaken", 0);
+            // Guest will get 1500 steps by default
+            localStorage.setItem('steps', 1500);
+            initGameFinished = true;
+            window.location.href = 'map.html';
         }
 
         async function setSteps() {
